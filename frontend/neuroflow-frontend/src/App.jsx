@@ -1,7 +1,7 @@
 import WaterLog from './components/WaterLog.jsx';
 import MealLog from "./components/MealLog";
 import WorkoutLog from './components/WorkoutLog.jsx';
-
+import PomodoroTracker from './components/PomodoroTracker.jsx';
 // function App() {
 //   return (
 //     <div className="bg-gray-100 min-h-screen">
@@ -18,9 +18,10 @@ import { ToastContainer } from 'react-toastify';
 function App() {
   return (
     <>
-      <WaterLog />
+      <PomodoroTracker />
+      {/* <WaterLog />
       <MealLog />
-      <WorkoutLog />
+      <WorkoutLog /> */}
       <ToastContainer position="top-center" autoClose={2500} />
     </>
   );

@@ -2,7 +2,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import water, meals, workout  # import other routes as you add them
+from routes import (
+    water,
+    meals,
+    workout,
+    pomodoro,
+)  # import other routes as you add them
 
 app = FastAPI(
     title="NeuroFlow API",
@@ -25,6 +30,8 @@ app.include_router(water.router, prefix="/api")
 app.include_router(meals.router, prefix="/api")
 
 app.include_router(workout.router, prefix="/api")
+
+app.include_router(pomodoro.router, prefix="/api")
 
 
 # Optional: root test route
