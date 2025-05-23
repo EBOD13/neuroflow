@@ -1,0 +1,70 @@
+:root {
+  --dial-radius: 10rem;
+  --dial-stroke-width: 5rem;
+  --dial-padding: 1.5rem;
+  --temp-font-size: 3rem;
+}
+
+.dial-container {
+  text-align: center;
+  background: #0e1d34;
+  padding: var(--dial-padding) 2rem;
+  color: white;
+  border-radius: 1rem;
+  max-width: 28rem;
+  margin: auto;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-size: calc(16px + 0.25vw); /* Responsive base font size */
+}
+
+.dial-svg {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  aspect-ratio: 26/18; /* Maintain aspect ratio */
+}
+
+.temperature-text {
+  margin: -5rem 0 0.5rem 0;
+  line-height: 1;
+}
+
+.temperature-text .label {
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 0.25em;
+  color: #a0a8c0;
+  letter-spacing: 0.05em;
+}
+
+.temperature-text .temp {
+  font-size: var(--temp-font-size);
+  font-weight: 300;
+  margin: 0;
+  line-height: 1;
+}
+
+.temperature-text .unit {
+  font-size: 0.85em;
+  color: #8a94b0;
+  margin-top: 0.25em;
+  font-weight: 400;
+}
+
+.scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -0.75rem;
+  font-size: 0.8em;
+  color: #8a94b0;
+  padding: 0 1em;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --temp-font-size: 2.5rem;
+    --dial-padding: 1rem;
+  }
+}

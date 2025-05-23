@@ -1,25 +1,37 @@
-// src/components/PomodoroTimer.jsx
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 export default function PomodoroTimer() {
   const [label, setLabel] = useState('');
-  const [durationMinutes, setDurationMinutes] = useState(25);
-  const [secondsLeft, setSecondsLeft] = useState(1500);
+  const [durationHours, setDurationHours] = useState(0);
+  const [durationMinutes, setDurationMinutes] = useState(0);
+  const [durationSeconds, setDurationSeconds] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
+  const [cycleCount, setCycleCount] = useState(0);
   const intervalRef = useRef(null);
+  const hasTriggeredRef = useRef(false);
+
+  const totalSeconds = useMemo(
+    () => durationHours * 3600 + durationMinutes * 60 + durationSeconds,
+    [durationHours, durationMinutes, durationSeconds]
+  );
+
+  const estimatedPomodoros = useMemo(() => {
+    const pomodoroCycle = 25 * 60 + 5 * 60;
+    return Math.floor(totalSeconds / pomodoroCycle);
+  }, [totalSeconds]);
 
   useEffect(() => {
     if (isRunning) {
       intervalRef.current = setInterval(() => {
-        setSecondsLeft(prev => {
+        setSecondsLeft((prev) => {
           if (prev <= 1) {
             clearInterval(intervalRef.current);
-            setIsRunning(false);
-            setIsCompleted(true);
-            triggerCompletion();
+            handleCycleCompletion();
             return 0;
           }
           return prev - 1;
@@ -29,33 +41,62 @@ export default function PomodoroTimer() {
     return () => clearInterval(intervalRef.current);
   }, [isRunning]);
 
+  const handleCycleCompletion = async () => {
+    setIsRunning(false);
+    new Audio('/beep.mp3').play();
+    await fetch('http://localhost:8000/api/alert/pomodoro');
+
+    if (!isBreak) {
+      await logSession();
+    }
+
+    // Transition between work and break cycles
+    if (!isBreak) {
+      setIsBreak(true);
+      setSecondsLeft(5 * 60);
+      setIsRunning(true);
+    } else {
+      setIsBreak(false);
+      setCycleCount((count) => count + 1);
+      if ((cycleCount + 1) * 30 * 60 < totalSeconds) {
+        setSecondsLeft(25 * 60);
+        setIsRunning(true);
+      } else {
+        setShowModal(true);
+        setIsCompleted(true);
+        setStartTime(null);
+      }
+    }
+  };
+
   const formatTime = (s) => {
-    const m = Math.floor(s / 60).toString().padStart(2, '0');
+    const h = Math.floor(s / 3600).toString().padStart(2, '0');
+    const m = Math.floor((s % 3600) / 60).toString().padStart(2, '0');
     const sec = (s % 60).toString().padStart(2, '0');
-    return `${m}:${sec}`;
+    return `${h}:${m}:${sec}`;
   };
 
   const startTimer = () => {
-    setSecondsLeft(durationMinutes * 60);
+    if (totalSeconds <= 0) return;
+    setCycleCount(0);
+    setSecondsLeft(25 * 60);
     setStartTime(new Date().toISOString());
     setIsRunning(true);
     setIsCompleted(false);
+    setIsBreak(false);
+    hasTriggeredRef.current = false;
   };
 
   const pauseTimer = () => setIsRunning(false);
   const resumeTimer = () => setIsRunning(true);
   const cancelTimer = () => {
     setIsRunning(false);
-    setSecondsLeft(durationMinutes * 60);
     setStartTime(null);
+    setSecondsLeft(0);
     setIsCompleted(false);
-  };
-
-  const triggerCompletion = async () => {
-    new Audio('/beep.mp3').play(); // Ensure this sound file exists
-    setShowModal(true);
-    await fetch('http://localhost:8000/api/alert/pomodoro'); // triggers LED/buzzer
-    await logSession();
+    setIsBreak(false);
+    setCycleCount(0);
+    hasTriggeredRef.current = false;
   };
 
   const logSession = async () => {
@@ -64,11 +105,11 @@ export default function PomodoroTimer() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         label,
-        duration: durationMinutes,
+        duration: 25,
         start_time: startTime,
         end_time: new Date().toISOString(),
         completed: true,
-        confirmed_by: "screen",
+        confirmed_by: 'screen',
       }),
     });
   };
@@ -80,16 +121,45 @@ export default function PomodoroTimer() {
         className="border px-3 py-1 mb-2"
         placeholder="Task Label"
         value={label}
-        onChange={e => setLabel(e.target.value)}
+        onChange={(e) => setLabel(e.target.value)}
+        disabled={isRunning || isCompleted}
       />
-      <input
-        type="number"
-        min={1}
-        className="border px-3 py-1 mb-4 ml-2"
-        value={durationMinutes}
-        onChange={e => setDurationMinutes(Number(e.target.value))}
-      />
+
+      <div className="flex justify-center gap-2 mb-2">
+        <input
+          type="number"
+          min={0}
+          placeholder="H"
+          className="w-16 border px-2 py-1"
+          value={durationHours}
+          onChange={(e) => setDurationHours(Number(e.target.value))}
+        />
+        <input
+          type="number"
+          min={0}
+          placeholder="M"
+          className="w-16 border px-2 py-1"
+          value={durationMinutes}
+          onChange={(e) => setDurationMinutes(Number(e.target.value))}
+        />
+        <input
+          type="number"
+          min={0}
+          placeholder="S"
+          className="w-16 border px-2 py-1"
+          value={durationSeconds}
+          onChange={(e) => setDurationSeconds(Number(e.target.value))}
+        />
+      </div>
+
+      {estimatedPomodoros > 0 && (
+        <p className="text-gray-600 mb-2">
+          Estimated Pomodoro Intervals: <strong>{estimatedPomodoros}</strong>
+        </p>
+      )}
+
       <div className="text-4xl font-mono my-4">{formatTime(secondsLeft)}</div>
+      <p className="mb-2">{isBreak ? '🌿 Break Time' : '💼 Focus Time'}</p>
 
       {!isRunning && !startTime && (
         <button onClick={startTimer} className="bg-green-500 text-white px-4 py-2 rounded">Start</button>
@@ -107,9 +177,17 @@ export default function PomodoroTimer() {
       {showModal && (
         <div className="popup-overlay">
           <div className="popup-box">
-            <h2>🎉 Session Complete!</h2>
-            <p>Great job on <strong>{label}</strong>!</p>
-            <button onClick={() => setShowModal(false)} className="submit-btn mt-4">Close</button>
+            <h2>🎉 All Sessions Complete!</h2>
+            <p>You've completed <strong>{cycleCount}</strong> Pomodoro intervals!</p>
+            <button
+              onClick={() => {
+                setShowModal(false);
+                cancelTimer();
+              }}
+              className="submit-btn mt-4"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

@@ -5,13 +5,13 @@ import time
 LED_PIN = 17
 BUZZER_PIN = 27
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED_PIN, GPIO.OUT)
-GPIO.setup(BUZZER_PIN, GPIO.OUT)
-
 
 def trigger_alert():
     try:
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(LED_PIN, GPIO.OUT)
+        GPIO.setup(BUZZER_PIN, GPIO.OUT)
+
         for _ in range(5):
             GPIO.output(LED_PIN, GPIO.HIGH)
             GPIO.output(BUZZER_PIN, GPIO.HIGH)
