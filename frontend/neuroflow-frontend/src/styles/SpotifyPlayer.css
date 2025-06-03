@@ -1,0 +1,118 @@
+.spotify-player-container {
+  width: 100%;
+  height: 90%;
+  max-height: 300px; /* Add maximum height constraint */
+  padding: 15px; /* Fixed padding instead of percentage */
+  box-sizing: border-box;
+  background-color: #003366;
+  color: white;
+  border-radius: 1.5rem;
+  border: 2px solid #2971A3;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Fixed gap instead of percentage */
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Fixed gap */
+  flex-shrink: 0;
+  min-height: 0; /* Allows proper shrinking */
+}
+
+.album-art {
+  width: 17%; /* Fixed width */
+  height: auto; /* Fixed height */
+  border-radius: 1rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.track-details {
+  min-width: 0; /* Allows text truncation */
+  flex-shrink: 1;
+}
+
+.track-details h3 {
+  font-size: 1rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-details p {
+  font-size: 0.85rem;
+  margin: 0.2rem 0 0 0;
+  color: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Fixed gap */
+  width: 100%;
+  flex-shrink: 0;
+  margin: 5px 0; /* Small fixed margin */
+}
+
+.progress-bar-container span {
+  font-size: 0.75rem;
+  width: 40px; /* Fixed width for time labels */
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: white;
+  appearance: none;
+  margin: 0;
+}
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px; /* Fixed gap */
+  width: 100%;
+  flex-shrink: 0;
+  margin-bottom: 1.5em; /* Small fixed margin */
+  margin-top: 1em;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 10px;
+  font-size: 300%; /* This scales FaPlay, FaPause etc. */
+  transition: transform 0.2s ease;
+}
+.control-button:hover {
+  transform: scale(1.1); /* subtle zoom on hover */
+  border: none;
+  appearance: none;
+}
+
+.control-button.play-button {
+  color: #0B1D3C;
+  width: 64px;
+  height: 64px;
+  font-size: 2rem;
+}
+

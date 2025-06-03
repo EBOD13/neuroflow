@@ -1,0 +1,359 @@
+/* Container */
+.pomodoro-container {
+  flex: 1;
+  min-height: 0;
+  min-width: 250px; /* Prevents container from becoming too narrow */
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #003366;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  gap: 0.5rem;
+}
+
+/* Typography */
+.timer-title, .session-title {
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  text-align: center;
+  padding: 0.25rem 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90vw; /* Limits width to 90% of viewport width */
+  font-size: clamp(1rem, 4vw, 1.5rem); /* Responsive font sizing */
+}
+
+
+/* Category Selector */
+.category-selector {
+  width: 90%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.category-dropdown, .custom-category-input {
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #0C172B;
+  color: white;
+  text-align: center;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.custom-category-input {
+  border: 1px solid #2971A3 !important;
+}
+
+/* Time Input */
+.time-box {
+  display: flex;
+  background-color: #0C172B;
+  border: 1px solid #2971A3;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 240px;
+  margin: 0.25rem 0;
+}
+
+.time-input-group {
+  flex: 1;
+  padding: 0.25rem;
+}
+
+.time-divider {
+  width: 1px;
+  background-color: #2971A3;
+}
+
+.input-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pomodoro-control-button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0.1rem;
+  cursor: pointer;
+}
+
+.pomodoro-control-button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.time-value {
+  font-size: 1.2rem;
+  color: white;
+  margin: 0.1rem 0;
+  text-align: center;
+}
+
+.time-label {
+  font-size: 0.65rem;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* Breaks info */
+.breaks-info {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  margin: 0.1rem 0;
+}
+
+/* Action Buttons */
+.action-buttons {
+  width: 90%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
+  justify-content: center;
+}
+
+.start-button, .skip-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem; /* Fixed width for square */
+  height: 3rem; /* Fixed height for square */
+  border-radius: 0.75rem; /* Rounded corners */
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.start-button {
+  background-color: #28A293;
+  color: white;
+}
+
+.skip-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.skip-button.active {
+  background-color: rgba(233, 118, 51, 0.2);
+  color: #E97633;
+}
+
+.button-icon {
+  font-size: 1.5rem;
+}
+
+/* Timer Display */
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.25rem 0;
+}
+
+.timer-status {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Timer Controls */
+.timer-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.25rem 0;
+}
+
+.pomodoro-control-button-large,
+.control-button-large {
+  width: 3.5rem; /* Fixed width for square */
+  height: 3.5rem; /* Fixed height for square */
+  border-radius: 1rem; /* Rounded corners */
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.pomodoro-control-button {
+  background: transparent;
+  border: none;
+  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.pomodoro-control-button svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.pomodoro-control-button-large {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1.5rem;
+}
+
+
+.control-button-large.stop-button {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #dc2626;
+}
+
+/* Modal */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background-color: #0C172B;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-width: 280px;
+  width: 90%;
+  text-align: center;
+  color: white;
+}
+
+.submit-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .time-box {
+    max-width: 220px;
+  }
+  
+  .pomodoro-control-button svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  
+  .time-value {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .start-button, .skip-button {
+    width: 100%;
+  }
+}
+
+@media (max-height: 600px) {
+  .pomodoro-container {
+    gap: 0.3rem;
+    padding: 0.25rem;
+  }
+  
+  .timer-title, .session-title {
+    font-size: 1rem;
+    padding: 0.1rem 0;
+  }
+  
+  .time-box {
+    margin: 0.1rem 0;
+  }
+  
+  .action-buttons {
+    gap: 0.25rem;
+  }
+}
+/* Circular Progress Styles */
+.circular-progress-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.circular-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.time-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.time-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .circular-progress-container {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .time-display {
+    font-size: 1.8rem;
+  }
+  
+  .time-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .circular-progress-container {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .time-display {
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,294 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-box {
+  background-color: #0A2239;
+  border-radius: 2rem !important;
+  overflow: hidden;
+  min-width: 26rem;
+  min-height: 18rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  border: none;
+}
+.popup-box h2 {
+  background-color: #28A293;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: -1.5rem -1.5rem 1rem;
+  padding: 1.5rem 1.5rem; 
+  text-align: center;
+}
+
+.popup-header{
+  background-color: #28A293;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: -2rem -1.5rem 1rem;
+  text-align: center;
+}
+
+.popup-content {
+  padding: 0 0.5rem;
+}
+.form-row {
+ width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: nowrap; /* prevent wrapping */
+  margin-bottom: 1rem;
+}
+
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+}
+
+input[type="text"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.45rem;
+  background-color: #1d2e40;
+  color: white;
+}
+input[type="time"]{
+    width: 5.5rem;
+}
+input[type="text"]{
+    width: 5.85rem;
+}
+.form-group select{
+    width: 8.5rem;
+}
+textarea {
+  resize: none;
+  height: 5rem;
+  width: 94%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #2CB8A5;
+  background-color: #22374c;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: stretch; /* Ensure both buttons stretch to same height */
+}
+
+.popup-actions button {
+  flex: 1;
+  padding: 0.85rem 1rem;
+  border-radius: 0.45rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  box-sizing: border-box;
+  min-height: 38px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Consistent line height */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Remove any potential margin differences */
+.popup-actions button:first-child,
+.popup-actions button:last-child {
+  margin: 0;
+}
+.cancel-btn {
+  background-color: #dc3545; /* red */
+  color: white;
+  border: none;
+  border-radius: 2rem !important;
+}
+
+.cancel-btn:hover {
+  background-color: #b02a37;
+}
+
+.submit-btn {
+  background-color: #28a745 !important; /* force green */
+  color: white !important;
+  border: none;
+}
+
+
+.submit-btn:hover {
+  background-color: #218838 !important;
+}
+
+.submit-btn:disabled {
+  background-color: #cccccc !important;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Meal box styles */
+.meal-box {
+  background-color: #003366;
+  border-radius: 16px;
+  padding-top: 0;
+  overflow: hidden;
+  min-width: 100%;
+  margin: auto;
+  height: 30%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  color: white;
+}
+
+.meal-box-header {
+  background-color: #2CB8A5;
+  width: 100%;
+  padding: 12px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: white;
+  margin: 0;
+}
+
+.meal-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.meal-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meal-icon {
+  width: 5rem;
+  height: 5rem;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.meal-icon:hover {
+  transform: scale(1.1);
+}
+
+.meal-label {
+margin: 0;
+  font-size: 1rem;
+  color: white;
+}
+
+.meal-label-container {
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;  /* vertical centering */
+  justify-content: center; /* horizontal centering */
+  gap: 8px;
+}
+
+
+
+.star-icon {
+  font-size: 1.5rem;
+
+}
+
+.star-completed {
+  color: #4CAF50; /* Green for completed */
+}
+
+.star-pending {
+  color: white; /* White for pending */
+}
+
+.star-missed {
+  color: #ff4444; /* Red for missed */
+}
+
+.amount-spent {
+  font-size: 0.8rem;
+  color: #f6ad55;
+  margin-top: 0.25rem;
+}
+
+.disabled-input {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.disabled-input::placeholder {
+  color: #ccc;
+}
+
+.disabled-input {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.disabled-input::placeholder {
+  color: #ccc;
+}
+
+/* Hide number input spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

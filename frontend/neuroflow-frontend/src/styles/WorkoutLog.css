@@ -1,0 +1,164 @@
+.workout-week {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, 1fr); /* 2 rows */
+  gap: 0.5rem;
+  height: 100%;
+}
+
+
+.workout-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+h2 {
+    margin-top: -2rem !important;
+    margin-left: -2rem !important;
+    margin-right: -2rem !important;
+}
+.add-button {
+    background-color: transparent;
+    border: none;
+}
+.miles-ran-input {
+  width: 4.5rem !important;
+  font-size: 1.2rem !important;
+  border-radius: 0.375rem;
+  border: 1px solid #ccc;
+  background-color: #1d2e40;
+  color: white;
+  text-align: center;
+  margin-left: 1rem;
+  margin-bottom: 10px;
+}
+
+.miles-ran-input:focus {
+  outline: 2px solid #2CB8A5;
+  background-color: #22374c;
+}
+
+.location-miles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* Adjust this value for more/less spacing */
+  width: 100%;
+}
+
+.location-miles .location-input {
+  flex: 1; /* Takes up remaining space */
+  min-width: 0; /* Prevents overflow */
+}
+
+.location-miles .miles-ran-input {
+  width: 3.5rem !important;  /* Fixed width for miles input */
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  height: 1.4rem !important;
+}
+
+.styled-checkbox {
+  display: flex;
+  align-items: center;
+  border: 2px solid #2CB8A5;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  background-color: #0B162A;
+  color: white;
+  font-size: 1.1rem;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.styled-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 2.2rem;
+  background-color: transparent;
+  margin-right: 0.75rem;
+  border-right: 2px solid #2CB8A5;
+  height: 100%;
+  cursor: pointer;
+  margin-left: -0.5rem;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+
+.styled-checkbox input[type="checkbox"]::before {
+  content: '';
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #2CB8A5;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.styled-checkbox input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+.checkbox-display {
+  flex: 1;
+  text-align: center;
+}
+
+.styled-checkbox-wrapper {
+  position: relative;
+}
+
+.remove-btn {
+  margin-left: 0.75rem;
+  font-size: 1.1rem;
+  color: #ff6b6b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0.4rem;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.remove-btn:hover {
+  color: #ff2e2e;
+}
+.remove-btn-inside {
+  background: none;
+  border: none;
+  color: #FF6B6B;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding-left: 0.75rem;
+  padding-right: 0;
+  transition: color 0.2s ease;
+}
+
+.remove-btn-inside:hover {
+  color: #FF2E2E;
+}
+.workout-week img {
+  min-width: 3rem;
+  max-width: 4rem;
+  transition: transform 0.3s ease;
+}
+
+.workout-week img:hover {
+  transform: scale(1.05); /* Optional: adds a nice hover effect */
+}
+.workout-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}

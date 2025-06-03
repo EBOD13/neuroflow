@@ -1,0 +1,219 @@
+/* Dashboard.css */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0d1b2a;
+}
+
+.dashboard-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #0A192F;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;          /* Full viewport height */
+  width: 100vw;           /* Full viewport width */
+  box-sizing: border-box;
+  overflow: hidden;       /* Prevent scrollbars unless needed */
+}
+
+/* LEFT PANEL */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;              
+  width: 50%;
+  gap: 1.5rem;
+  overflow: hidden;
+  border: 3px solid #334155;
+  background-color: #112240;
+  border-radius: 2rem;
+  box-sizing: border-box;
+}
+
+.top-left {
+  height: 45%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-left {
+  display: flex;
+  flex-direction: row;
+  gap: .85rem;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+.half-section {
+  flex: 1;
+  min-height: 0;        /* prevents overflowing children */
+  overflow: hidden;
+}
+
+.right-bottom-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+.camera-stream-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 2rem;
+  overflow: hidden;
+  border: 3px solid #334155;
+  background-color: #112240;
+  height: 100%;
+}
+
+.top-right{
+  margin-bottom: -1rem;
+}
+
+.bottom-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  grid-template-rows: auto 1fr; /* Auto for first row, remaining space for second */
+  gap: 1rem;
+  height: 63%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.bottom-right-left {
+  grid-column: 1;
+  grid-row: 1 / span 2; /* Takes both rows */
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 1rem; /* Space between WaterLog and Pomodoro */
+}
+
+.workout-log {
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+}
+
+
+.bottom-right-right {
+  grid-column: 2;
+  grid-row: 2; /* Second row of second column */
+}
+.water-box {
+  flex-shrink: 0;
+  max-height: 45%; /* Adjust this value as needed */
+}
+
+.pomodoro-container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.meal-box {
+  height: 100%; /* Fill container */
+}
+
+/* Spotify Section */
+.auth-error {
+  background: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.retry-button {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.retry-button:hover {
+  background: #b71c1c;
+}
+
+.spotify-login-prompt {
+  background: #282828;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spotify-login-button {
+  background-color: #1DB954;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+}
+
+.spotify-login-button:hover {
+  background-color: #1ED760;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .left-panel, 
+  .right-panel {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .bottom-left {
+    flex-direction: column;
+  }
+  
+  .bottom-right {
+    flex-direction: column;
+  }
+}
+@media (max-height: 700px) {
+  .top-right {
+    height: 30%; /* or adjust as needed */
+  }
+}
